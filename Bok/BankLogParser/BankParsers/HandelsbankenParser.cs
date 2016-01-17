@@ -9,10 +9,10 @@ namespace Bok.BankLogParser
     {
         public bool identify(string bankLogString)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
-        public IEnumerable<BankEntry> parse(string bankLogString)
+        public List<BankEntryDTO> parse(string bankLogString)
         {
             throw new NotImplementedException();
         }

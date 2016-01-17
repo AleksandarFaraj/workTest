@@ -6,39 +6,23 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Bok.BankLogParser;
+using Bok.Service;
+
 namespace Bok.Controllers
 {
     public class BankLogController : ApiController
     {
         private Parser parser = new Parser();
         private List<BankEntry> bankEntries= new List<BankEntry>();
-        // GET: api/BankLog
-        public IEnumerable<BankEntry> Get()
-        {
-            return bankEntries;
-        }
-
-        // GET: api/BankLog/5
-        public BankEntry Get(int id)
-        {
-            return bankEntries[id];
-        }
-
+       
         // POST: api/BankLog
-        public IEnumerable<BankEntry> Post(BankLog bankLog)
+        public List<BankEntryDTO> Post(BankLog bankLog)
         {
-            return parser.parse(bankLog);
-        }
+            List<BankEntryDTO> bankEntriesDTO = parser.parse(bankLog);
+            List<BankEntryDTO> verifiedBankEntriesDTO = Validator.Validator.Validate(bankEntriesDTO, DBService.getDB());
 
-        // PUT: api/BankLog/5
-        public void Put(int id, [FromBody]string value)
-        {
+            return verifiedBankEntriesDTO;
         }
-
-        // DELETE: api/BankLog/5
-        public void Delete(int id)
-        {
-            bankEntries.RemoveAt(id);
-        }
+     
     }
 }

@@ -1,0 +1,35 @@
+﻿<div class="">
+    <div ng-hide="entries">
+        <div class="form-group">
+            <label for="EnterBankLog">Klistra in din bank log:</label>
+            <textarea ng-model="bankLog" class="form-control" rows="15" id="EnterBankLog"></textarea>
+        </div>
+        <button ng-click="enterBankLog(bankLog);">Enter</button>
+    </div>
+    <div ng-show="entries">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Transaktionsdatum</th>
+                    <th>Avsändare/mottagare</th>
+                    <th>Belopp</th>
+                    <th>Saldo</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="entry in entries"> 
+                <td>
+                    {{entry.transactionDate | date: "yyyy-MM-dd"}}
+                </td>
+                <td>
+                    {{entry.account}}
+                </td>
+                <td class="text-right">
+                    {{entry.amount}}
+                </td>
+                <td class="text-right">
+                    {{entry.balance}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

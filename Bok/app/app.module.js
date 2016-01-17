@@ -1,32 +1,32 @@
 ﻿angular.module('bokio', ['ui.router'])
-.config(function ($stateProvider, $urlRouterProvider) {
-    //
-    // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise("/EnterBankLog");
-    //
-    // Now set up the states
+.config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    //I don't know how to configure the server to always redirect to index.html :-p
+    // $locationProvider.html5Mode(true);
+
+    $urlRouterProvider.otherwise("/");
+
     $stateProvider
+      .state('LandingPage', {
+          url: "/",
+          templateUrl: "app/partials/LandingPage.html",
+      })
+      
       .state('EnterBankLog', {
           url: "/EnterBankLog",
-          templateUrl: "app/partials/EnterBankLog.html"
+          templateUrl: "app/partials/EnterBankLog.html",
+          controller: "EnterBankLog"
       })
-      .state('state1.list', {
-          url: "/list",
-          templateUrl: "partials/state1.list.html",
-          controller: function ($scope) {
-              $scope.items = ["A", "List", "Of", "Items"];
-          }
-      })
-      .state('state2', {
-          url: "/state2",
-          templateUrl: "partials/state2.html"
-      })
-      .state('state2.list', {
-          url: "/list",
-          templateUrl: "partials/state2.list.html",
-          controller: function ($scope) {
-              $scope.things = ["A", "Set", "Of", "Things"];
+
+      .state('ShowAllTransactions', {
+          url: "/ShowAllTransactions",
+          templateUrl: "app/partials/ShowAllTransactions.html",
+          controller: "ShowAllTransactions",
+          resolve: {
+              entries: function ($http) {
+                  return $http.get("api/BankEntry");
+              }
           }
       });
+    
 });
 

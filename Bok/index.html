@@ -1,13 +1,14 @@
 ﻿<!DOCTYPE html>
 <html ng-app="bokio">
 <head>
+    <base href="/">
     <title>Bokio</title>
 	<meta charset="utf-8" />
     <link href="Content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="Content/bootstrap-theme.css" rel="stylesheet" type="text/css" />
     <link href="Content/main.css" rel="stylesheet" type="text/css" />
 </head>
-<body ng-controller="main">
+<body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -26,7 +27,23 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-    <div ui-view></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h3>
+                    Menu:
+                </h3>
+                <hr />
+                <p>Utgiftshanterare:</p>
+                <ul>
+                    <li><a ui-sref="EnterBankLog">Lägg till uppgifter</a></li>
+                    <li><a ui-sref="ShowAllTransactions">Summering</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9" ui-view></div>
+        </div>
+    </div>
+  
     
     <script src="scripts/jquery-1.9.1.js"></script>
     <script src="scripts/angular.min.js"></script>

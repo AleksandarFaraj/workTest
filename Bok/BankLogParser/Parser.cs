@@ -17,8 +17,8 @@ namespace Bok.BankLogParser
             bankParsers.Add(new HandelsbankenParser());
         }
        
-        public IEnumerable<BankEntry> parse(BankLog bankLog) {
-            BankParser bankParser = identifyBank(bankLog.BankLogString);
+        public List<BankEntryDTO> parse(BankLog bankLog) {
+            BankParser bankParser = identifyBank(bankLog.BankLogString);      
             return bankParser.parse(bankLog.BankLogString);
         }
 
@@ -28,7 +28,7 @@ namespace Bok.BankLogParser
             {
                 if (bankParser.identify(bankLogString)) { return bankParser; };
             }
-            throw new NotImplementedException();
+            throw new BankNotRecognizedException();
         }
     }
 }

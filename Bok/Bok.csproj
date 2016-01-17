@@ -109,8 +109,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BankEntryController.cs" />
+    <Compile Include="Service\DBService.cs" />
+    <Compile Include="Validator\Validator.cs" />
     <Content Include="app\controllers\main.js" />
+    <Content Include="app\partials\ShowAllTransactions.html" />
     <Content Include="app\partials\EnterBankLog.html" />
+    <Content Include="app\partials\LandingPage.html" />
+    <Content Include="app\services.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -119,10 +125,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Compile Include="BankLogParser\BankNotRecognizedException.cs" />
     <Compile Include="BankLogParser\BankParsers\BankParser.cs" />
-    <Compile Include="BankLogParser\BankParsers\SEB.cs" />
+    <Compile Include="BankLogParser\BankParsers\SEBParser.cs" />
     <Compile Include="BankLogParser\BankParsers\HandelsbankenParser.cs" />
     <Compile Include="BankLogParser\Parser.cs" />
+    <Compile Include="MockDB\IDataBase.cs" />
+    <Compile Include="MockDB\MockDB.cs" />
+    <Compile Include="Models\BankEntryDTO.cs" />
     <Compile Include="Models\BankEntry.cs" />
     <Compile Include="Models\BankLog.cs" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
@@ -149,7 +159,9 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -174,7 +186,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="app\services\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
